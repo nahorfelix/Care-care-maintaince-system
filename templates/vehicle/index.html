@@ -1,0 +1,526 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Car Care Center | Professional Auto Service</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* 🎨 REVISED COLOR PALETTE */
+    /* Primary: Blue Gradient (#0088ff, #0055c7) */
+    /* Accent: Teal/Aqua for contrast (#1de9b6) - Used only for CTA and Hover/Active states */
+    /* Background: Soft White/Light Grey (#f7f9fc) */
+
+    /* General Styles */
+    body {
+      font-family: 'Inter', 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f9fc; 
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    /* --- Navbar (Primary Blue Theme) --- */
+    .navbar {
+      padding: 1.5rem 6%;
+      background: linear-gradient(135deg, #0088ff, #0055c7); /* Primary Blue Gradient */
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); 
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.4s;
+    }
+
+    .navbar .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .navbar .nav-links a {
+      color: #fff;
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      opacity: 0.9;
+    }
+
+    .navbar .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 3px;
+      bottom: -8px;
+      left: 0;
+      background-color: #fff; /* White underline for strong contrast */
+      transition: width 0.3s;
+      border-radius: 50px;
+    }
+
+    .navbar .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .navbar .nav-links a:hover {
+        opacity: 1;
+    }
+
+    .navbar .btn-navbar {
+      padding: 12px 30px;
+      border-radius: 50px;
+      border: 2px solid #1de9b6; /* Use accent for CTA border */
+      color: #1de9b6;
+      background: rgba(255, 255, 255, 0.1);
+      font-weight: 700;
+      transition: 0.4s ease-in-out;
+    }
+
+    .navbar .btn-navbar:hover {
+      background: #1de9b6; /* Use accent for CTA hover fill */
+      color: #0055c7; 
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(29, 233, 182, 0.5);
+    }
+
+    /* Mobile menu (styles kept the same) */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media (max-width: 992px) {
+      .navbar .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: linear-gradient(135deg, #0088ff, #0055c7);
+        flex-direction: column;
+        width: 250px;
+        display: none;
+        border-radius: 0 0 15px 15px;
+        padding: 20px 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar .nav-links.active {
+        display: flex;
+      }
+      
+      .navbar .nav-links a {
+          width: 100%;
+          text-align: center;
+          padding: 10px 0;
+      }
+      
+      .navbar .btn-navbar {
+          margin-top: 15px;
+          border-color: #fff;
+          color: #fff;
+          background: transparent;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+    
+    /* --- Hero Section (Styles kept the same) --- */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 6%;
+      background: url('{% static "images/image.png" %}') center/cover no-repeat;
+      color: #fff;
+      overflow: hidden;
+      border-bottom-left-radius: 80px;
+      border-bottom-right-radius: 80px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+      border-bottom-left-radius: 80px;
+      border-bottom-right-radius: 80px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.8rem;
+      font-weight: 800;
+      margin-bottom: 25px;
+      line-height: 1.15;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content h1 span {
+      color: #1de9b6; /* Accent color for highlight only */
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      color: #e0e0e0;
+      font-weight: 400;
+    }
+
+    .btn-primary {
+      background-color: #1de9b6; /* Accent color for primary CTA fill */
+      border: none;
+      padding: 14px 35px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      margin-right: 20px;
+      color: #0055c7;
+      font-weight: 700;
+      box-shadow: 0 8px 15px rgba(29, 233, 182, 0.4);
+      transition: 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      background-color: #00c6b0;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 14px 35px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s ease-in-out;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-color: #1de9b6; /* Accent color on hover */
+      color: #1de9b6;
+      transform: translateY(-2px);
+    }
+
+    /* Features Highlights (Primary Blue Theme) */
+    .features-highlights {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: -90px;
+      flex-wrap: wrap;
+      z-index: 2;
+      position: relative;
+      padding: 0 6%;
+      margin-bottom: 60px;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, #0088ff, #0055c7); /* Primary Blue Gradient */
+      color: #ffffff; 
+      padding: 30px 25px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      flex: 1 1 280px;
+  
+
+      transition: transform 0.4s, box-shadow 0.4s;
+      opacity: 0;
+    }
+
+    .feature-card img {
+      width: 70px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1); /* Ensure icons are white */
+    }
+    
+    .feature-card h4 {
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    
+    .feature-card p {
+        color: #f0f0f0;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Marquee Section */
+    .marquee-container {
+      overflow: hidden;
+      background: #1b7ee0; 
+      padding: 40px 0;
+      margin-top: 40px; 
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .marquee-container img {
+      margin: 0 40px;
+      height: 90px;
+      width: auto;
+      filter: grayscale(80%) opacity(0.7);
+      transition: transform 0.4s, filter 0.4s;
+    }
+
+    .marquee-container img:hover {
+      transform: scale(1.1);
+      filter: grayscale(0%) opacity(1);
+    }
+    
+    /* --- Main Content Section (Customers/Mechanics) - RESTORED FUNCTIONALITY --- */
+    .features {
+        /* This container just sets padding and background for the included file */
+        padding: 60px 6%;
+        background-color: #f7f9fc;
+    }
+    
+    /* Assuming the included HTML file uses classes that need modern styling */
+    /* If the included file uses Bootstrap or other classes, they will apply. */
+    /* Example: Styling a hypothetical card wrapper within the included file: */
+    /*
+    .customer-mechanic-cards-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+    }
+    */
+
+    /* --- Footer (Primary Blue Theme) --- */
+    footer {
+      background: linear-gradient(135deg, #0072ff, #003c80); /* Deeper blue gradient for footer */
+      color: #c7cdd4;
+      padding: 80px 6%;
+      font-size: 1rem;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 50px;
+    }
+
+    .footer-section {
+        max-width: 300px;
+    }
+
+    .footer-section h5 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      font-weight: 700;
+      color: #fff;
+      border-bottom: 2px solid #1de9b6; /* Accent color for underline */
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: #c7cdd4;
+      text-decoration: none;
+      margin-bottom: 12px;
+      display: block;
+      transition: 0.3s;
+      line-height: 1.6;
+    }
+
+    .footer-section a:hover {
+      color: #1de9b6;
+      transform: translateX(5px);
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin-right: 20px;
+      color: #fff;
+      font-size: 1.4rem;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #1de9b6;
+      transform: scale(1.1);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      font-size: 0.9rem;
+      color: #8c96a3;
+    }
+    
+    @media (max-width: 768px) {
+      .preview-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">CAR CARE CENTER</div>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+    <div class="nav-links">
+      <a href="{% url 'home'%}">Home</a>
+      <a href="#">Services</a>
+      <a href="{% url 'about'%}">About</a>
+      <a href="{% url 'contactus'%}">Contact</a>
+      <a href="#" class="btn-navbar">Book Now</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content animate__animated animate__fadeInLeft">
+      <h1>Quality Car Care on a <span class="animate__animated animate__flash animate__slow animate__infinite">Budget</span><br>Affordable Auto Maintenance & Repairs</h1>
+      <p>Accurate diagnostics, excellent service, and peace of mind for your vehicles.</p>
+      <a href="#" class="btn btn-primary animate__animated animate__fadeInUp animate__delay-1s">Request a Quote</a>
+      <a href="#" class="btn btn-secondary animate__animated animate__fadeInUp animate__delay-1s">How It Works</a>
+    </div>
+  </section>
+
+  <div class="features-highlights ">
+    <div class="feature-card animate__animated" data-delay="0s">
+      <img src="{% static 'images/diags.png' %}" alt="Diagnosis">
+      <h4>Precision Diagnosis</h4>
+      <p>Using state-of-the-art tools for accurate diagnostics guaranteed.</p>
+    </div>
+    <div class="feature-card animate__animated" data-delay="0.2s">
+      <img src="{% static 'images/icons/warranty.png' %}" alt="Warranty">
+      <h4>Service Warranty</h4>
+      <p>Confidence in our work with a comprehensive Six Months Warranty.</p>
+    </div>
+    <div class="feature-card animate__animated" data-delay="0.4s">
+      <img src="{% static 'images/icons/customer-service.png' %}" alt="Customer Service">
+      <h4>Dedicated Support</h4>
+      <p>Experience excellent customer service from our friendly and professional team.</p>
+    </div>
+  </div>
+
+  <div class="marquee-container">
+    <marquee behavior="scroll" direction="left" scrollamount="8">
+        <img src="{% static 'images/ferrari.png' %}" alt="ferrari">
+        <img src="{% static 'images/ford.png' %}" alt="ford">
+        <img src="{% static 'images/lambo.png' %}" alt="lambo">
+        <img src="{% static 'images/mahindra.png' %}" alt="mahindra">
+        <img src="{% static 'images/tvs.png' %}" alt="tvs">
+        <img src="{% static 'images/tata.png' %}" alt="tata">
+        <img src="{% static 'images/hero.png' %}" alt="hero">
+        <img src="{% static 'images/rolls.png' %}" alt="rolls">
+        <img src="{% static 'images/suzuki.png' %}" alt="suzuki">
+    </marquee>
+</div>
+
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h5>About Car Care Center</h5>
+        <p>Providing top-quality car care services that are reliable, affordable, and professional. We are dedicated to keeping your vehicle in top condition through quality workmanship, modern techniques, and a team that truly cares.</p>
+      </div>
+      <div class="footer-section">
+        <h5>Quick Links</h5>
+        <a href="{% url 'home'%}">Home</a>
+        <a href="#">Services</a>
+        <a href="{% url 'about'%}">About Us</a>
+        <a href="{% url 'contactus'%}">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h5>Connect With Us</h5>
+        <p><i class="fas fa-envelope footer-icon"></i> Email: felixnahor2@gmail.com</p>
+        <p><i class="fas fa-phone footer-icon"></i> Phone: +254 743 947 701</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Car Care Center | Designed & Developed by Felix Nahor. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Animate feature cards on scroll
+    const cards = document.querySelectorAll('.feature-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.getAttribute('data-delay');
+          entry.target.style.animationDelay = delay;
+          entry.target.classList.add('animate__fadeInUp');
+          entry.target.style.opacity = 1;
+          observer.unobserve(entry.target); // Stop observing once animated
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+</body>
+</html>

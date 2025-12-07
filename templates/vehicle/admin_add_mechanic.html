@@ -1,0 +1,131 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<head>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      background-color: #f5f6fa;
+    }
+
+    .content-wrapper {
+      flex: 1;
+      padding: 60px 20px 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    h3 {
+      text-align: center;
+      color: #006eff;
+      margin-bottom: 30px;
+    }
+
+    form {
+      width: 100%;
+      max-width: 600px;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type=text],
+    input[type=number],
+    input[type=password],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+
+    input[type=submit] {
+      width: 100%;
+      background-color: #006eff;
+      color: white;
+      padding: 14px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    input[type=submit]:hover {
+      background-color: #0051cc;
+      transform: translateY(-2px);
+    }
+
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Modern sticky footer */
+    footer {
+      background-color: #006eff;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+
+<div class="content-wrapper">
+  <div>
+    <h3>HIRE MECHANIC TO AGENCY</h3>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <label for="first_name">First Name</label>
+      {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+
+      <label for="last_name">Last Name</label>
+      {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+
+      <label for="mobile">Mobile</label>
+      {% render_field mechanicForm.mobile class="form-control" placeholder="Mobile" %}
+
+      <label for="address">Address</label>
+      {% render_field mechanicForm.address class="form-control" placeholder="Address" %}
+
+      <label for="skill">Skills</label>
+      {% render_field mechanicForm.skill class="form-control" placeholder="Skills" %}
+
+      <label for="salary">Salary</label>
+      {% render_field mechanicSalary.salary class="form-control" placeholder="Salary" %}
+
+      <label for="username">Username</label>
+      {% render_field userForm.username class="form-control" placeholder="Username" %}
+
+      <label for="password">Password</label>
+      {% render_field userForm.password class="form-control" placeholder="Password" %}
+
+      <label for="profile_pic">Profile Picture</label>
+      {% render_field mechanicForm.profile_pic class="form-control" placeholder="Profile Picture" %}
+
+      <input type="submit" value="Create">
+    </form>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Care Care Center — All Rights Reserved
+</footer>
+
+{% endblock content %}

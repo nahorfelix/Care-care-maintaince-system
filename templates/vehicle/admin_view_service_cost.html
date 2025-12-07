@@ -1,0 +1,82 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+
+<div class="wrapper" style="padding:40px 20px; min-height:80vh; background-color:#f8f9fa;">
+
+  <!-- Table Card -->
+  <div class="card" style="border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.1); overflow-x:auto;">
+    <div class="card-header" style="text-align:center; background-color:#e74c3c; color:white; padding:15px 0; font-size:1.2em;">
+      Service Cost
+    </div>
+    <div class="card-content" style="padding:20px;">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th>Customer Name</th>
+            <th>Vehicle Name</th>
+            <th>Problem Description</th>
+            <th>Cost</th>
+            <th>Update Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c,r in data %}
+          <tr>
+            <td>{{ c.get_name }}</td>
+            <td>{{ r.vehicle_name }}</td>
+            <td>{{ r.problem_description }}</td>
+            <td>{{ r.cost }}</td>
+            <td><a href="{% url 'update-cost' r.id %}" class="action-icon update">&#9998;</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<style>
+/* Modern table styling */
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.modern-table thead tr {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+
+.modern-table th, .modern-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.modern-table tbody tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.2s;
+}
+
+.action-icon {
+  font-size: 20px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.action-icon.update:hover {
+  color: #27ae60;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .modern-table th, .modern-table td {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+}
+</style>
+
+{% endblock content %}

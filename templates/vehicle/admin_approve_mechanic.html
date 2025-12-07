@@ -1,0 +1,63 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+{% load static %}
+
+<!-- main content -->
+<div class="wrapper" style="padding: 40px 20px; min-height: 80vh;">
+
+  <!-- Table Card -->
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-12 col-lg-12">
+      <div class="card" style="border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.1);">
+        <div class="card-header" style="text-align:center; background-color:#f0f4ff; border-top-left-radius:12px; border-top-right-radius:12px;">
+          <h3 style="color:#006eff; margin:10px 0;">
+            Hire Mechanics Based On Skill
+          </h3>
+        </div>
+
+        <div class="card-content" style="overflow-x:auto; padding:20px;">
+          <table style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif;">
+            <thead>
+              <tr style="background-color:#006eff; color:white; text-align:left;">
+                <th style="padding:12px;">Mechanic Name</th>
+                <th style="padding:12px;">Profile Picture</th>
+                <th style="padding:12px;">Mobile Number</th>
+                <th style="padding:12px;">Address</th>
+                <th style="padding:12px;">Skills</th>
+                <th style="padding:12px;">Approve</th>
+                <th style="padding:12px;">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for m in mechanics %}
+              <tr style="border-bottom:1px solid #ddd; text-align:left;">
+                <td style="padding:12px;">{{m.get_name}}</td>
+                <td style="padding:12px;">
+                  <img src="{% static m.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" style="border-radius:50%; object-fit:cover;" />
+                </td>
+                <td style="padding:12px;">{{m.mobile}}</td>
+                <td style="padding:12px;">{{m.address}}</td>
+                <td style="padding:12px;">{{m.skill}}</td>
+                <td style="padding:12px;">
+                  <a href="{% url 'approve-mechanic' m.id  %}" style="color:#006eff; text-decoration:none; font-size:22px;">&#10004;</a>
+                </td>
+                <td style="padding:12px;">
+                  <a href="{% url 'delete-mechanic' m.id  %}" style="color:#ff4d4d; text-decoration:none; font-size:22px;">&#10008;</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Sticky Footer -->
+<footer style="background-color:#006eff; color:white; text-align:center; padding:15px 0; font-size:14px; margin-top:auto;">
+  &copy; 2025 Care Care Center — All Rights Reserved
+</footer>
+
+{% endblock content %}

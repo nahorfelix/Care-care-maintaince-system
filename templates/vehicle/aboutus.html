@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /* Set HTML and BODY height to 100% of the viewport */
+      height: 100vh; /* Use viewport height */
+      overflow: hidden; /* Prevent scrolling on the body */
+      
+      /* --- BACKGROUND STYLES (Kept as before) --- */
+      background-image: url("{% static 'images/image.png' %}");
+      background-size: cover; 
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      background-position: center center;
+    }
+
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      /* Ensures the wrapper fits the screen without scrolling */
+      height: 100vh; 
+      overflow: hidden; /* Prevent scrolling inside the wrapper */
+      background-color: rgba(255, 255, 255, 0); 
+    }
+
+    .content-area {
+      flex: 1; /* Allow content-area to take up all remaining vertical space */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around; /* Vertically space out elements */
+      overflow-y: auto; /* IMPORTANT: If content overflows, allow internal scrolling */
+      padding-top: 20px; /* Add padding to prevent content hitting the top */
+      padding-bottom: 20px; /* Add padding to prevent content hitting the marquee */
+    }
+    
+    .jumbotron {
+      margin: 0;
+      padding: 10px 15px; /* Reduced padding for more space */
+      background: none !important;
+      /* Reset specific jumbotron styles for better fit */
+      flex-grow: 1; /* Allow jumbotron to expand within content-area */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Center jumbotron content vertically */
+    }
+    
+    /* Ensure the long text paragraph uses less space */
+    .jumbotron p {
+        font-size: 14px; /* Reduced font size for tighter fit */
+        line-height: 1.4;
+    }
+
+    /* Reduce margin/padding on smaller elements */
+    .alert {
+      margin: 0 0 10px 0;
+      padding: 5px;
+    }
+    
+    /* Ensure text in the jumbotron is visible (Kept as before) */
+    .jumbotron h1,
+    .jumbotron p,
+    .jumbotron strong {
+      text-align: center;
+      color: #ffffff; 
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+      font-weight: bold;
+    }
+
+    /* Blue button */
+    .btn-primary {
+      margin-top: 10px !important; /* Adjust button margin */
+    }
+
+
+    /* Marquee and Footer Styles (Kept for visibility) */
+    marquee {
+        /* I'm removing the background here so it is not visible through the blue footer background */
+        background-color: transparent !important; 
+        padding: 5px 0 !important; /* Reduced padding */
+        flex-shrink: 0; 
+    }
+    
+    .footer-container {
+        /* This container will hold both the marquee and the footer content */
+        background-color: #006eff; 
+        color: white; 
+        padding: 0; /* Remove top/bottom padding here, let inner elements define it */
+        width: 100%;
+        flex-shrink: 0; 
+    }
+    /* Ensure white text for included footer content */
+    .footer-container p, .footer-container a, .footer-container h5 { 
+        color: white !important; 
+    }
+    
+    /* Other styles (Kept as before) */
+    .alert {
+      background-color: #006eff !important;
+      color: white !important;
+      border: none !important;
+      text-shadow: none;
+    }
+    marquee img {
+      margin: 0 15px;
+    }
+    .btn-primary {
+      background-color: #006eff !important;
+      border-color: #006eff !important;
+    }
+    hr {
+      border-top: 2px solid #006eff;
+      width: 60%;
+    }
+    
+    /* Remove the extra bottom spacing that causes a scroll bar */
+    .footer-spacing {
+        display: none;
+    }
+  </style>
+
+  <title>About Us</title>
+</head>
+
+<body>
+<div class="page-wrapper">
+
+  {% include "vehicle/navbar.html" %}
+
+  <div class="content-area">
+
+    <div class="jumbotron">
+      <h1 class="display-4">Welcome to Car Care Center </h1>
+      <p class="lead">A genuine solution to vehicle problems</p>
+      <hr class="my-4">
+      <h1 style="text-align:center;">About Us</h1>
+      <p style="max-width: 900px; margin: 0 auto; font-size: 16px; line-height: 1.6; text-align: center;">
+        Welcome to <strong>Care Care Center</strong>, your trusted partner for professional and reliable car care
+        services. We are dedicated to keeping your vehicle in top condition through quality workmanship, modern
+        techniques, and a team that truly cares about your car as much as you do.<br>
+
+        At Care Care Center, we provide a wide range of car care solutions, including detailing, routine servicing,
+        diagnostics, and thorough cleaning. Our skilled technicians work with precision and passion, ensuring every
+        vehicle receives the attention it deserves.<br><
+
+        We believe in honesty, quality service, and customer satisfaction. Our mission is simple: to keep your car
+        performing at its best and looking its finest.<br>
+
+        <strong>Care Care Center — where your car is cared for with excellence.</strong>
+      </p>
+
+      <center style="margin-top: 25px;">
+        <a class="btn btn-primary btn-lg" href="/" role="button">HOME</a>
+      </center>
+      </div>
+
+  </div>
+  
+  <div class="footer-container">
+    
+    <marquee behavior="scroll" direction="left" style="padding: 10px 0;">
+      <img src="{% static 'images/ferrari.png' %}" width="120" height="80" alt="ferrari" />
+      <img src="{% static 'images/ford.png' %}" width="120" height="80" alt="ford" />
+      <img src="{% static 'images/lambo.png' %}" width="120" height="80" alt="lambo" />
+      <img src="{% static 'images/mahindra.png' %}" width="120" height="80" alt="mahindra" />
+      <img src="{% static 'images/tvs.png' %}" width="120" height="80" alt="tvs" />
+      <img src="{% static 'images/tata.png' %}" width="120" height="80" alt="tata" />
+      <img src="{% static 'images/hero.png' %}" width="120" height="80" alt="hero" />
+      <img src="{% static 'images/rolls.png' %}" width="120" height="80" alt="rolls" />
+      <img src="{% static 'images/suzuki.png' %}" width="120" height="80" alt="suzuki" />
+    </marquee>
+
+    {% include "vehicle/footer.html" %}
+    <span class="footer-spacing"><br><br></span>
+  </div>
+</div>
+</body>
+
+</html>

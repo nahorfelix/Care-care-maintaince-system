@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Mechanics Hub</title>
+
+  <style media="screen">
+    
+    /* --- BODY & GLOBAL STYLES --- */
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        height: 100vh;
+        
+        /* KEY CHANGE 1: Background Image Setup */
+        background-image: url("{% static 'images/image.png' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center center;
+        
+        /* Set up body to center the jumbotron */
+        display: flex; 
+        flex-direction: column;
+        align-items: center; 
+        /* Padding to account for the navbar being at the top (if fixed) */
+        padding-top: 60px; /* Adjust based on your navbar height */
+    }
+
+    /* --- JUMBOTRON STYLING (Blue Card & White Bold Text) --- */
+    .jumbotron {
+      /* Overriding the original margins for centering */
+      margin-top: 0px;
+      margin-bottom: 0px;
+      
+      /* KEY CHANGE 3: Primary Blue Background */
+      background: #006eff !important; /* Use a strong blue color */
+      color: white !important; /* Set text color to white */
+      
+      /* Added padding and shadow for visual appeal */
+      padding: 50px; 
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      
+      /* Ensure it sits above the background image */
+      z-index: 5;
+      
+      /* Center the jumbotron content on the page */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      /* Set content size */
+      width: 500px; 
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .jumbotron h1 {
+      /* KEY CHANGE 4: White, Bold Font */
+      text-align: center;
+      color: white !important;
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+    
+    /* Apply white and bold to all paragraph elements inside the jumbotron */
+    .jumbotron p, .jumbotron p.lead {
+        color: white !important;
+        font-weight: bold;
+    }
+    
+    /* Horizontal Rule */
+    .jumbotron hr {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    /* --- FOOTER FIX --- */
+    footer {
+        /* KEY CHANGE 5: Fixing the footer to the bottom of the viewport */
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #006eff; 
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+        z-index: 10;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  {% include "vehicle/navbar.html" %}
+  <br><br>
+  <div class="jumbotron" style="margin-bottom:0px;">
+    <h1 class="display-4">Hello, Mechanics</h1>
+    <p class="lead">Welcome to Vehicle Service Management</p>,<br><br>
+    <p>Its always having you as one of our Experts!</p><br>
+    <hr class="my-4">
+    <p>You can access various features after Login.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="mechanicsignup" role="button">Apply For Job</a>
+      <a class="btn btn-primary btn-lg" href="mechaniclogin" role="button">Login</a>
+    </p>
+  </div>
+  {% include "vehicle/footer.html" %}
+</body>
+
+</html>

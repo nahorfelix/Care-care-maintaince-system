@@ -1,0 +1,94 @@
+{% extends 'vehicle/adminbase.html' %}
+
+{% block content %}
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f6fa;
+  }
+
+  .attendance-table-container {
+    max-width: 800px;
+    margin: 60px auto;
+  }
+
+  .attendance-table-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .attendance-table-card .card-header {
+    background: linear-gradient(90deg, #0072ff, #8811c5);
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px 15px;
+    font-size: 1.1em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #006eff;
+    color: white;
+  }
+
+  tr:hover {
+    background-color: #f1f7ff;
+  }
+
+  @media (max-width: 768px) {
+    .attendance-table-container {
+      margin: 20px;
+    }
+    th, td {
+      font-size: 13px;
+      padding: 10px;
+    }
+  }
+</style>
+
+<div class="attendance-table-container">
+  <div class="attendance-table-card">
+    <div class="card-header">
+      Attendance of Mechanics for {{date}}
+    </div>
+    <div class="card-body" style="padding: 20px;">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Mechanic Name</th>
+            <th>Present / Absent</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for attendancedata, mechanicdata in mylist %}
+          <tr>
+            <td>{{mechanicdata.get_name}}</td>
+            <td>{{attendancedata.present_status}}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="2" style="text-align:center;">No attendance records available</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

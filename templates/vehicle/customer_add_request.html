@@ -1,0 +1,102 @@
+{% extends 'vehicle/customerbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+  <style>
+    /* General styling */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-top: 50px;
+      font-weight: 600;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 30px;
+      margin: 50px auto;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: 500;
+      margin-top: 10px;
+      display: block;
+      color: #555;
+    }
+
+    input[type=text], input[type=number], select, textarea, .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 8px 0 16px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      transition: 0.3s;
+    }
+
+    input[type=text]:focus, input[type=number]:focus, select:focus, textarea:focus {
+      border-color: #4CAF50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+      outline: none;
+    }
+
+    input[type=submit] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      form {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<h1>Make Request</h1>
+<br><br>
+<form method="post">
+    {% csrf_token %}
+    <label for="category">Vehicle Category</label>
+    {% render_field enquiry.category class="form-control" %}
+
+    <label for="vehicle_no">Vehicle Number</label>
+    {% render_field enquiry.vehicle_no class="form-control" placeholder="Vehicle Number" %}
+
+    <label for="vehicle_name">Vehicle Name</label>
+    {% render_field enquiry.vehicle_name class="form-control" placeholder="Vehicle Name" %}
+
+    <label for="vehicle_brand">Vehicle Brand</label>
+    {% render_field enquiry.vehicle_brand class="form-control" placeholder="Vehicle Brand" %}
+
+    <label for="vehicle_model">Vehicle Model</label>
+    {% render_field enquiry.vehicle_model class="form-control" placeholder="Vehicle Model" %}
+
+    <label for="problem_description">Problem Description</label>
+    {% render_field enquiry.problem_description class="form-control" placeholder="Problem Description" %}
+
+    <input type="submit" value="Submit">
+</form>
+{% endblock content %}

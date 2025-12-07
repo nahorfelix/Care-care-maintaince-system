@@ -1,0 +1,85 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      color: white;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .order-card i {
+      font-size: 36px;
+    }
+
+    .card h6 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+    .bg-blue {
+      background: linear-gradient(45deg, #006eff, #3399ff);
+    }
+
+    .bg-yellow {
+      background: linear-gradient(45deg, #FFB64D, #ffcb80);
+      color: #333;
+    }
+
+    .card-block {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .col-md-4 {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+
+    <div class="col-md-6 col-xl-6">
+      <div class="card bg-blue order-card" onclick="window.location.href='/admin-view-attendance'">
+        <div class="card-block">
+          <i class="fas fa-eye"></i>
+          <h6 class="mt-3">View Mechanic Attendance</h6>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl-6">
+      <div class="card bg-yellow order-card" onclick="window.location.href='/admin-take-attendance'">
+        <div class="card-block">
+          <i class="fas fa-plus-circle"></i>
+          <h6 class="mt-3">Take Mechanic Attendance</h6>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content %}

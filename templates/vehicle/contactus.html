@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Feedback</title>
+  <style>
+    /* ------------------------------------------------------------------ */
+    /* --- Full-Screen, Fixed Background, and Text Visibility Styles --- */
+    /* ------------------------------------------------------------------ */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      
+      /* Full-Screen Fit */
+      height: 100vh; 
+      overflow: hidden; 
+      
+      /* Background Image */
+      background-image: url("{% static 'images/image.png' %}");
+      background-size: cover; 
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      background-position: center center;
+    }
+
+    /* Navbar/Header Spacing adjustment */
+    body > br {
+        display: none;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Adjusted padding to control vertical space */
+      padding: 10px 20px 10px 20px; 
+      overflow-y: auto; 
+      justify-content: flex-start; 
+      min-height: 0;
+    }
+    
+    /* Wrapper for the 3-column GRID layout */
+    .main-content-wrapper {
+        display: grid;
+        /* KEY CHANGE: 1fr (Card 1) 20px (Space) 1fr (Card 2) */
+        grid-template-columns: 1fr 20px 1fr; 
+        width: 100%; 
+        max-width: 1200px;
+        margin-top: 10px; 
+        flex-grow: 1; 
+        align-items: stretch; /* Stretch items (form and panel) to full height */
+        min-height: 0;
+    }
+    
+    /* NEW: Spacer column to enforce the gap */
+    .spacer-column {
+        /* This column is intentionally empty to create space */
+        grid-column: 2 / 3; 
+    }
+
+    /* Form Card Container (Left Side - spans grid column 1) */
+    .form-card-container {
+        grid-column: 1 / 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch; 
+        min-height: 0;
+        min-width: 0;
+  
+    }
+
+    /* Services Info Panel (Right Side - spans grid column 3) */
+    .services-panel {
+        grid-column: 3 / 4;
+        background-color: rgba(0, 110, 255, 0.85);
+        color: #ffffff;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        /* Removed max-width here so it fills the grid column completely */
+        align-self: stretch; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 0;
+        min-width: 0;
+    }
+    
+    .services-panel h1 {
+        color: #ffffff;
+        margin-bottom: 20px;
+        font-size: 2.2rem;
+        border-bottom: 2px solid #ffffff;
+        padding-bottom: 10px;
+    }
+    
+    .services-panel ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 10px;
+    }
+    .services-panel ul li {
+        margin-bottom: 8px;
+        padding-left: 20px;
+        position: relative;
+    }
+    .services-panel ul li::before {
+        content: '•';
+        color: white; 
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+    }
+
+
+    /* Ensure all text outside of the form is white and visible */
+    main h3.alert {
+        color: #ffffff;
+        background-color: #006eff; 
+        border: none;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        margin-top: 10px;
+        margin-bottom: 20px;
+        width: auto;
+        max-width: none;
+    }
+
+    form {
+        height: 100%; 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; 
+        
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 35px 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 100%; /* Ensure form takes full width of the grid column */
+        transition: transform 0.3s;
+        flex-shrink: 0;
+    }
+    
+    form h3 {
+        flex-grow: 1;
+        overflow-y: auto; 
+        margin-bottom: 25px;
+        font-size: 1.2rem;
+        color: #333;
+    }
+    
+    form h3 > p {
+        margin: 0;
+        padding: 0;
+    }
+
+
+    input[type="submit"] {
+      border-radius: 12px;
+      padding: 12px 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #006eff;
+      color: #fff;
+      border: none;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: auto; 
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    
+    /* Marquee and Footer Styles (Unchanged) */
+    .footer-container marquee img {
+      border-radius: 12px;
+      margin: 0 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .footer-container marquee img:hover {
+      transform: scale(1.15);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    marquee {
+        background-color: transparent !important;
+        padding: 10px 0 !important;
+        flex-shrink: 0; 
+        margin-top: 0 !important;
+    }
+    .footer-container {
+        background-color: #006eff; 
+        color: white; 
+        width: 100%;
+        flex-shrink: 0; 
+    }
+    .footer-container p, .footer-container a, .footer-container h5, .footer-container footer { 
+        color: white !important; 
+        background-color: transparent !important;
+        padding: 0;
+        margin: 0;
+    }
+    footer {
+      background-color: transparent;
+      color: #ffffff;
+      padding: 20px 0;
+      text-align: center;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      margin-top: 0;
+    }
+    input, textarea, select {
+      border-radius: 10px;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+.fixed-top {
+  position: unset;
+    .fixed-top {
+      position: unset !important;
+    }
+
+
+    .site-main{
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: auto;    }
+
+    /* Media query for smaller screens: revert to stacked columns */
+    @media (max-width: 768px) {
+        .main-content-wrapper {
+            display: flex; /* Switch back to Flexbox for stacking */
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+        .form-card-container, .services-panel {
+            width: 90%;
+            max-width: 100%;
+            align-self: center;
+        }
+        .services-panel {
+            padding: 30px 20px;
+        }
+        form {
+            height: auto; 
+        }
+        /* Hide the spacer column on mobile */
+        .spacer-column {
+            display: none;
+        }
+    }
+  </style>
+</head>
+
+<body>
+  
+  {% include "vehicle/navbar.html" %}
+
+  <main class="site">
+    <h3 class='alert alert-success'>Send Us Your Valuable Feedback!</h3>
+    <div style="display: flex; height: 100% align-items:center;">
+    <div class="main-content-wrapper-009 card-container" style="	display:flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;">
+        
+        <div class="form-card-container-009 card left">
+            <form method="POST">
+                {% csrf_token %}
+                <h3>{{ form.as_p }}</h3> <br><br>
+                <input type="submit" value="Send Message" class='btn btn-primary btn-lg'><br><br>
+            </form>
+        </div>
+        
+       
+
+        <div class="card right" style="width: 522px" > 
+          <div class="services-panel"> 
+            <h1>Services</h1>
+            <p>
+                We’d Love to Hear From You<br>
+                Your feedback helps us serve you better! Whether you have questions, suggestions, or want to book a service, drop us a message and our team will get back to you promptly.
+            </p>
+            <p>
+                **Send us a message:**
+                <ul>
+                    <li>Fill out the left side</li>
+                    <li>Share your experience or suggestions</li>
+                    <li>We value every customer and respond quickly</li>
+                </ul>
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+  </main>
+
+  <div class="footer-container">
+    <marquee behavior="scroll" direction="left" style="padding: 10px 0;">
+      <img src="{% static 'images/ferrari.png' %}" width="120" height="80" alt="ferrari" />
+      <img src="{% static 'images/ford.png' %}" width="120" height="80" alt="ford" />
+      <img src="{% static 'images/lambo.png' %}" width="120" height="80" alt="lambo" />
+      <img src="{% static 'images/mahindra.png' %}" width="120" height="80" alt="mahindra" />
+      <img src="{% static 'images/tvs.png'}" width="120" height="80" alt="tvs" />
+      <img src="{% static 'images/tata.png' %}" width="120" height="80" alt="tata" />
+      <img src="{% static 'images/hero.png' %}" width="120" height="80" alt="hero" />
+      <img src="{% static 'images/rolls.png' %}" width="120" height="80" alt="rolls" />
+      <img src="{% static 'images/suzuki.png' %}" width="120" height="80" alt="suzuki" />
+    </marquee>
+  
+    {% include "vehicle/footer.html" %}
+  </div>
+</body>
+
+</html>

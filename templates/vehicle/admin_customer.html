@@ -1,0 +1,105 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .order-card {
+      color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .order-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .bg-blue {
+      background: linear-gradient(45deg, #006eff, #3399ff);
+    }
+
+    .card-block {
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    .card-block h6 {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .card-block i {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .col-md-4 {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <br><br><br><br><br>
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <!-- View All Customers -->
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card bg-blue">
+          <div class="card-block">
+            <i class="fas fa-eye"></i>
+            <a href="/admin-view-customer"><h6>View All Customers</h6></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Customer -->
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card bg-blue">
+          <div class="card-block">
+            <i class="fas fa-plus-circle"></i>
+            <a href="/admin-add-customer"><h6>Add Customer</h6></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Enquiry -->
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card bg-blue">
+          <div class="card-block">
+            <i class="fas fa-check-circle"></i>
+            <a href="/admin-view-customer-enquiry"><h6>Enquiry By Customer</h6></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Invoice -->
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card bg-blue">
+          <div class="card-block">
+            <i class="fas fa-rupee-sign"></i>
+            <a href="/admin-view-customer-invoice"><h6>View Customer Invoice</h6></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+{% endblock content %}

@@ -1,0 +1,200 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<!-- main content -->
+<div class="wrapper">
+
+  <!-- ****** cards start ********** -->
+  <div class="row justify-content-center cards-row">
+
+    <!-- Total Customer -->
+    <div class="col-12 col-md-3 mb-3">
+      <div class="counter">
+        <i class="fas fa-users"></i>
+        <h3>{{total_customer}}</h3>
+        <p>Total Customer</p>
+      </div>
+    </div>
+
+    <!-- Total Mechanic -->
+    <div class="col-12 col-md-3 mb-3">
+      <div class="counter">
+        <i class="fas fa-hat-cowboy"></i>
+        <h3>{{total_mechanic}}</h3>
+        <p>Total Mechanic</p>
+      </div>
+    </div>
+
+    <!-- Total Enquiry -->
+    <div class="col-12 col-md-3 mb-3">
+      <div class="counter">
+        <i class="fas fa-spinner"></i>
+        <h3>{{total_request}}</h3>
+        <p>Total Enquiry</p>
+      </div>
+    </div>
+
+    <!-- Total Feedback -->
+    <div class="col-12 col-md-3 mb-3">
+      <div class="counter">
+        <i class="fas fa-comments"></i>
+        <h3>{{total_feedback}}</h3>
+        <p>Total Feedback</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- ****** cards end ********** -->
+
+  <!-- ****** table start ********** -->
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Recent Enquiry By Customer</h3>
+        </div>
+        <div class="card-content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Vehicle Name</th>
+                <th>Category</th>
+                <th>Vehicle Model</th>
+                <th>Vehicle Brand</th>
+                <th>Problem Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for c,r in data %}
+              <tr>
+                <td>{{c.get_name}}</td>
+                <td>{{r.vehicle_name}}</td>
+                <td>{{r.category}}</td>
+                <td>{{r.vehicle_model}}</td>
+                <td>{{r.vehicle_brand}}</td>
+                <td>{{r.problem_description}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ****** table end ********** -->
+
+</div>
+
+<!-- Sticky Footer -->
+<footer class="footer">
+  &copy; 2025 Care Care Center — All Rights Reserved
+</footer>
+
+<!-- Custom JS -->
+<script>
+  // Row hover effect
+  document.querySelectorAll("tbody tr").forEach(row => {
+    row.addEventListener("mouseenter", () => row.style.backgroundColor = "#e6f0ff");
+    row.addEventListener("mouseleave", () => row.style.backgroundColor = "transparent");
+  });
+
+  // Card hover effect
+  document.querySelectorAll(".counter").forEach(counter => {
+    counter.addEventListener("mouseenter", () => counter.style.transform = "translateY(-5px)");
+    counter.addEventListener("mouseleave", () => counter.style.transform = "translateY(0)");
+  });
+</script>
+
+<!-- Custom CSS -->
+<style>
+  .wrapper {
+    padding: 40px 20px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Cards */
+  .cards-row .counter {
+    background: linear-gradient(45deg, #006eff, #3399ff);
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+  }
+
+  .cards-row .counter:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+
+  .counter i {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  /* Table */
+  .card {
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    display: grid;
+  }
+
+  .card-header {
+    background-color: #f0f4ff;
+    text-align: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 15px 0;
+  }
+
+  .card-header h3 {
+    color: #006eff;
+    margin: 0;
+  }
+
+  .card-content {
+    overflow-x: auto;
+    padding: 20px;
+  }
+
+  table.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+
+  table.table th {
+    background-color: #006eff;
+    color: white;
+    text-align: left;
+    padding: 12px;
+  }
+
+  table.table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  table.table tr:hover {
+    background-color: #e6f0ff;
+  }
+
+  /* Footer */
+  .footer {
+    background-color: #006eff;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    margin-top: auto;
+  }
+</style>
+
+{% endblock content %}

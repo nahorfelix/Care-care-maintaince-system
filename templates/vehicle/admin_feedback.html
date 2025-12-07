@@ -1,0 +1,81 @@
+{% extends 'vehicle/adminbase.html' %}
+
+{% block content %}
+
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .feedback-heading {
+      text-align: center;
+      color: #006eff;
+      font-size: 28px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .alert {
+      max-width: 800px;
+      margin: 15px auto;
+      padding: 20px 25px;
+      background-color: #006eff;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .alert:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: white;
+      font-weight: bold;
+      font-size: 22px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .closebtn:hover {
+      color: #ccc;
+    }
+
+    .alert strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .alert {
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 15px 20px;
+      }
+    }
+  </style>
+</head>
+
+<br><br><br>
+<div class="feedback-heading">
+  Feedback Sent By Customer / Mechanic
+</div>
+<br>
+
+{% for f in feedback %}
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <strong>{{f.date}} || By: {{f.by}}</strong>
+  {{f.message}}
+</div>
+{% endfor %}
+
+<br><br><br>
+{% endblock content %}

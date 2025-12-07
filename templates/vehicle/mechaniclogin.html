@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mechanic Login</title>
+    <style>
+      /* General Reset & Body */
+      * {
+        box-sizing: border-box;
+      }
+      body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        
+        /* KEY CHANGE: Background Image Introduction */
+        background-image: url("{% static 'images/image.png' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center center;
+        /* Replaced: background: linear-gradient(to right, #4facfe, #00f2fe); */
+      }
+
+      /* Navbar placeholder */
+      nav {
+        z-index: 1000;
+      }
+
+      /* Centered Login Box */
+      .container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+      }
+
+      .box {
+        width: 100%;
+        max-width: 400px;
+        padding: 40px 30px;
+        /* Using semi-transparent blue instead of black for theme consistency */
+        background: rgba(0, 110, 255, 0.9); /* #006eff equivalent */
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        text-align: center;
+        color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      }
+
+      .box h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+      }
+
+      .box p {
+        font-size: 14px;
+        color: #fff; /* Ensuring text is white */
+        margin-bottom: 30px;
+      }
+
+      .box input[type="text"],
+      .box input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 15px 0;
+        border-radius: 30px;
+        border: 2px solid #3498db;
+        background: rgba(255, 255, 255, 0.1); /* Transparent white input */
+        color: #fff;
+        outline: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .box input[type="text"]:focus,
+      .box input[type="password"]:focus {
+        border-color: #2ecc71;
+        box-shadow: 0 0 8px #2ecc71;
+      }
+
+      .box input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        border-radius: 30px;
+        border: none;
+        background: #2ecc71;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .box input[type="submit"]:hover {
+        background: #27ae60;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+
+      /* Footer Styling */
+      footer {
+        background: #006eff; /* Primary Blue for consistency */
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 14px;
+        flex-shrink: 0;
+        border-top: 1px solid #333;
+      }
+
+      /* Responsive */
+      @media(max-width: 500px){
+        .box {
+          padding: 30px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include "vehicle/navbar.html" %}
+
+    <div class="container">
+      <div class="box">
+        <form method="post">
+          {% csrf_token %}
+          <h1>Mechanic Login</h1>
+          <p>Please enter your login and password</p>
+
+          {% render_field form.username class="form-control" placeholder="Username" %}
+          {% render_field form.password class="form-control" placeholder="Password" %}
+
+          <input type="submit" value="Login">
+        </form>
+      </div>
+    </div>
+
+    {% include "vehicle/footer.html" %}
+  </body>
+</html>

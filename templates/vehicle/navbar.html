@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+
+    .navbar-custom {
+      background-color: #006eff !important;   /* Match footer color */
+      height: 100px;                           /* Increased navbar height */
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand {
+      font-size: 22px;
+      font-family: sans-serif;
+      color: #ffffff !important;
+      font-weight: bold;
+    }
+
+    .nav-link {
+      color: #ffffff !important;
+      font-size: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .nav-link:hover {
+      color: #dce9ff !important; /* Light blue hover */
+    }
+
+    .navbar-toggler {
+      border-color: white;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-custom fixed-top12">
+    <a href="/" class="navbar-brand">Vehicle Service Management</a>
+
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+      <div class="navbar-nav">
+        <a href="/" class="nav-item nav-link active">Home</a>
+        <a href="/customerclick" class="nav-item nav-link">Customer</a>
+        <a href="/mechanicsclick" class="nav-item nav-link">Mechanics</a>
+        <a href="/adminclick" class="nav-item nav-link">Admin</a>
+      </div>
+
+      <div class="navbar-nav">
+        <a href="/aboutus" class="nav-item nav-link">About Us</a>
+        <a href="/contactus" class="nav-item nav-link">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+</body>
+
+</html>

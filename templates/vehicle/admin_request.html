@@ -1,0 +1,94 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  /* Card styles */
+  .order-card {
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  .order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  }
+  .card-block {
+    padding: 25px;
+    text-align: center;
+  }
+  .order-card h6 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .order-card i {
+    font-size: 32px;
+    margin-top: 10px;
+  }
+
+  /* Background gradients */
+  .bg-c-blue { background: linear-gradient(45deg, #006eff, #73b4ff); }
+  .bg-c-green { background: linear-gradient(45deg, #2ed8b6, #59e0c5); }
+  .bg-c-yellow { background: linear-gradient(45deg, #FFB64D, #ffcb80); }
+  .bg-c-pink { background: linear-gradient(45deg, #FF5370, #ff869a); }
+
+  /* Responsive spacing */
+  .dashboard-container {
+    margin: 60px 20px 40px 20px;
+  }
+</style>
+
+<div class="dashboard-container container">
+  <div class="row g-4 justify-content-center">
+
+    <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+      <div class="card order-card bg-c-blue">
+        <div class="card-block">
+          <a href="/admin-view-request" style="color:white;">
+            <h6>View All Request</h6>
+          </a>
+          <i class="fas fa-eye"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+      <div class="card order-card bg-c-green">
+        <div class="card-block">
+          <a href="/admin-add-request" style="color:white;">
+            <h6>Make Request</h6>
+          </a>
+          <i class="fas fa-plus-circle"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+      <div class="card order-card bg-c-yellow">
+        <div class="card-block">
+          <a href="/admin-approve-request" style="color:white;">
+            <h6>Approve Request</h6>
+          </a>
+          <i class="fas fa-check-circle"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+      <div class="card order-card bg-c-pink">
+        <div class="card-block">
+          <a href="/admin-view-service-cost" style="color:white;">
+            <h6>Service Cost</h6>
+          </a>
+          <i class="fas fa-rupee-sign"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content %}

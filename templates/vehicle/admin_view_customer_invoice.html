@@ -1,0 +1,96 @@
+{% extends 'vehicle/adminbase.html' %}
+{% block content %}
+
+<style>
+  .wrapper {
+    padding: 40px 20px;
+    min-height: 80vh;
+    background-color: #f5f6fa;
+    font-family: Arial, sans-serif;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+
+  .card-header {
+    text-align: center;
+    background-color: #ff4d4d; /* matches your red theme */
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 15px 0;
+  }
+
+  .card-content {
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #333;
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #ff4d4d; /* header color */
+    color: #fff;
+  }
+
+  tr:hover {
+    background-color: #ffe6e6; /* subtle hover effect */
+  }
+
+  @media (max-width: 768px) {
+    th, td {
+      font-size: 13px;
+      padding: 10px;
+    }
+  }
+</style>
+
+<div class="wrapper">
+
+  <div class="row">
+    <div class="col-12 col-m-12 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          Customer With Their Total Cost
+        </div>
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Total Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for c,r in data %}
+              <tr>
+                <td>{{c.get_name}}</td>
+                <td>{{r.cost__sum}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

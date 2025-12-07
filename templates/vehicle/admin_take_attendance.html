@@ -1,0 +1,104 @@
+{% extends 'vehicle/adminbase.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f6fa;
+  }
+
+  .attendance-form {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  }
+
+  .attendance-form h3 {
+    text-align: center;
+    color: #006eff;
+    margin-bottom: 30px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  table th, table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+
+  table th {
+    background-color: #006eff;
+    color: white;
+  }
+
+  table tr:hover {
+    background-color: #f0f4ff;
+  }
+
+  input[type="submit"] {
+    display: block;
+    width: 200px;
+    margin: 20px auto 0 auto;
+    padding: 12px 0;
+    background-color: #ffec00;
+    color: #333;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #e6d600;
+    transform: translateY(-2px);
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+</style>
+
+<div class="attendance-form">
+  <h3>Mechanic Attendance</h3>
+  <form method="post" autocomplete="off">
+    {% csrf_token %}
+    <table>
+      <thead>
+        <tr>
+          <th>Mechanic Name</th>
+          <th>Present/Absent</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in mechanics %}
+        <tr>
+          <td>{{ m.get_name }}</td>
+          <td>{% render_field aform.present_status class="form-control" %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% render_field aform.date class="form-control" placeholder="Enter Date mm/dd/yyyy" %}
+    <input type="submit" name="submit" value="Submit">
+  </form>
+</div>
+
+{% endblock content %}

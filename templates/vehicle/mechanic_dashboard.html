@@ -1,0 +1,135 @@
+{% extends 'vehicle/mechanicbase.html' %}
+{% load static %}
+{% block content %}
+
+<!-- main content -->
+<div class="wrapper" style="padding: 30px;">
+    <br><br><br><br>
+
+    <!-- ****** cards start ********** -->
+    <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+        <div class="col-3 col-m-6 col-sm-6">
+            <div class="counter modern-card bg-primary">
+                <p><i class="fas fa-tasks"></i></p>
+                <h3>{{ new_work_assigned }}</h3>
+                <p>New Work Assigned</p>
+            </div>
+        </div>
+
+        <div class="col-3 col-m-6 col-sm-6">
+            <div class="counter modern-card bg-warning">
+                <p><i class="fas fa-spinner"></i></p>
+                <h3>{{ work_in_progress }}</h3>
+                <p>Work In Progress</p>
+            </div>
+        </div>
+
+        <div class="col-3 col-m-6 col-sm-6">
+            <div class="counter modern-card bg-success">
+                <p><i class="fas fa-check-circle"></i></p>
+                <h3>{{ work_completed }}</h3>
+                <p>Work Completed</p>
+            </div>
+        </div>
+        <div class="col-3 col-m-6 col-sm-6">
+            <div class="counter modern-card bg-danger">
+                <p><span class="currency">KSh</span></p>
+                <h3>{{ salary }}</h3>
+                <p>Salary</p>
+            </div>
+        </div>
+        
+
+    </div>
+    <!-- ****** cards end ********** -->
+
+    <br><br>
+
+    <!-- ****** Brands Marquee ****** -->
+    <div class="marquee-container" style="background: #f9f9f9; padding: 25px 0; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        <marquee behavior="scroll" direction="left" scrollamount="6">
+            <img src="{% static 'images/ferrari.png' %}" alt="ferrari">
+            <img src="{% static 'images/ford.png' %}" alt="ford">
+            <img src="{% static 'images/lambo.png' %}" alt="lambo">
+            <img src="{% static 'images/mahindra.png' %}" alt="mahindra">
+            <img src="{% static 'images/tvs.png' %}" alt="tvs">
+            <img src="{% static 'images/tata.png' %}" alt="tata">
+            <img src="{% static 'images/hero.png' %}" alt="hero">
+            <img src="{% static 'images/rolls.png' %}" alt="rolls">
+            <img src="{% static 'images/suzuki.png' %}" alt="suzuki">
+        </marquee>
+    </div>
+
+</div>
+
+<!-- Modern Card Styles -->
+<style>
+.wrapper {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.modern-card {
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: linear-gradient(135deg, #53a0df, #53a0df);
+}
+
+.modern-card p i {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    animation: iconBounce 2s infinite;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.modern-card h3 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.modern-card p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.modern-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Marquee Images */
+.marquee-container img {
+    height: 80px;
+    width: auto;
+    margin: 0 25px;
+    filter: grayscale(50%);
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.marquee-container img:hover {
+    transform: scale(1.2);
+    filter: grayscale(0%);
+}
+
+@media(max-width: 768px) {
+    .modern-card {
+        margin-bottom: 20px;
+    }
+    .marquee-container img {
+        height: 60px;
+        margin: 0 15px;
+    }
+}
+</style>
+
+{% endblock content %}
